@@ -17,5 +17,5 @@ counts = text_file.flatMap(lambda line: line.split(" ")) \
              .reduceByKey(lambda a, b: a + b)
 
 print ("Number of elements: " + str(counts.count()))
-counts.saveAsTextFile("./shakespeareWordCount")
+counts.saveAsTextFile("../resources/data/shakespeareWordCount")
 # counts.saveAsTextFile("hdfs:///tmp/shakespeareWordCount")
