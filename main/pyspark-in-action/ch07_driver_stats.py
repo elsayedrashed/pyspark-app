@@ -170,3 +170,55 @@ spark.sql(
     """
 ).show(5)
 
+
+# tag::ch07-code-cte[]
+spark.sql(
+    """
+    WITH drive_days as (
+        SELECT
+            model,
+            count(*) AS drive_days
+        FROM drive_stats
+        GROUP BY model),
+    failures as (
+        SELECT
+            model,
+            count(*) AS failures
+        FROM drive_stats
+        WHERE failure = 1
+        GROUP BY model)
+    SELECT
+        model,
+        failures / drive_days failure_rate
+    FROM drive_days
+    INNER JOIN failures
+    ON
+        drive_days.model = failures.model
+    ORDER BY 2 desc
+    """
+).show(5)
+# end::ch07-code-cte[]
+
+# tag::ch07-code-pyspark-cte[]
+def failure_rate(drive_stats):
+    drive_days = drive_stats.groupby(F.col("model")).agg(  # <1>
+        F.count(F.col("*")).alias("drive_days")
+    )
+
+    failures = (
+        drive_stats.where(F.col("failure") == 1)
+        .groupby(F.col("model"))
+        .agg(F.count(F.col("*")).alias("failures"))
+    )
+    answer = (  # <2>
+        drive_days.join(failures, on="model", how="inner")
+        .withColumn("failure_rate", F.col("failures") / F.col("drive_days"))
+        .orderBy(F.col("failure_rate").desc())
+    )
+    return answer
+
+
+failure_rate(drive_stats).show(5)
+
+print("drive_days" in dir())  # <3>
+# end::ch07-code-pyspark-cte[]
