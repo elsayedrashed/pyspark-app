@@ -6,7 +6,7 @@ from pyspark.sql import SparkSession
 import os
 
 current_dir = os.path.dirname(__file__)
-relative_path = "../../resources/data/books.csv"
+relative_path = "../resources/data/books.csv"
 absolute_file_path = os.path.join(current_dir, relative_path)
 
 # Creates a session on a local master
@@ -18,5 +18,5 @@ df = session.read.csv(header=True, inferSchema=True, path=absolute_file_path)
 # Shows at most 5 rows from the dataframe
 df.show(5)
 
-# Good to stop SparkSession at the end of the application
+# Good to stop SparkSession at the end of the dataframe
 session.stop()

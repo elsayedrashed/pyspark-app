@@ -9,7 +9,7 @@ from pyspark.sql import functions as F
 import os
 
 current_dir = os.path.dirname(__file__)
-relative_path = "../../resources/data/authors.csv"
+relative_path = "../resources/data/authors.csv"
 absolute_file_path = os.path.join(current_dir, relative_path)
 
 # Creates a session on a local master
@@ -40,5 +40,5 @@ prop = {"driver":"org.postgresql.Driver", "user":"jgp", "password":"Spark<3Java"
 # Write in a table called ch02
 df.write.jdbc(mode='overwrite', url=dbConnectionUrl, table="ch02", properties=prop)
 
-# Good to stop SparkSession at the end of the application
+# Good to stop SparkSession at the end of the dataframe
 spark.stop()

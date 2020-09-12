@@ -8,7 +8,7 @@ from pyspark.sql.types import (StructType,StructField,
 import os
 
 current_dir = os.path.dirname(__file__)
-relative_path = "../../../resources/data/populationbycountry19802010millions.csv"
+relative_path = "../resources/data/populationbycountry19802010millions.csv"
 absolute_file_path = os.path.join(current_dir, relative_path)
 
 # Creates a session on a local master
@@ -55,6 +55,6 @@ slightlyBiggerCountriesDf = spark2.sql(query2)
 
 slightlyBiggerCountriesDf.show(10, False)
 
-# Good to stop SparkSession at the end of the application
+# Good to stop SparkSession at the end of the dataframe
 spark.stop()
 spark2.stop()

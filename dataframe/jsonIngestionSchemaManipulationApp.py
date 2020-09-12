@@ -9,7 +9,7 @@ from pyspark.sql.functions import (lit,col,concat,split)
 import os
 
 current_dir = os.path.dirname(__file__)
-relative_path = "../../resources/data/Restaurants_in_Durham_County_NC.json"
+relative_path = "../resources/data/Restaurants_in_Durham_County_NC.json"
 absolute_file_path = os.path.join(current_dir, relative_path)
 
 # Creates a session on a local master

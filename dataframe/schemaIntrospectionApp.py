@@ -10,7 +10,7 @@ import os
 import json
 
 current_dir = os.path.dirname(__file__)
-relative_path = "../../resources/data/Restaurants_in_Wake_County_NC.csv"
+relative_path = "../resources/data/Restaurants_in_Wake_County_NC.csv"
 absolute_file_path = os.path.join(current_dir, relative_path)
 
 # Creates a session on a local master
@@ -53,5 +53,5 @@ parsedSchemaAsJson = json.loads(schemaAsJson)
 
 print("*** Schema as JSON: {}".format(json.dumps(parsedSchemaAsJson, indent=2)))
 
-# Good to stop SparkSession at the end of the application
+# Good to stop SparkSession at the end of the dataframe
 spark.stop()

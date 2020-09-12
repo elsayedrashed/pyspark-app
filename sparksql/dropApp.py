@@ -15,7 +15,7 @@ log = logging.getLogger(__name__)
 log.debug("-> start()")
 
 current_dir = path.dirname(__file__)
-relative_path = "../../../resources/data/populationbycountry19802010millions.csv"
+relative_path = "../resources/data/populationbycountry19802010millions.csv"
 absolute_file_path = path.join(current_dir, relative_path)
 
 # Creates a session on a local master
@@ -88,5 +88,5 @@ cleanedDf = spark.sql(query)
 log.debug("Territories in cleaned dataset: {}".format(cleanedDf.count))
 cleanedDf.show(20, False)
 
-# Good to stop SparkSession at the end of the application
+# Good to stop SparkSession at the end of the dataframe
 spark.stop()

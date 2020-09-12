@@ -8,7 +8,7 @@ from pyspark.sql.functions import lit,col,concat
 import os
 
 current_dir = os.path.dirname(__file__)
-relative_path = "../../resources/data/Restaurants_in_Wake_County_NC.csv"
+relative_path = "../resources/data/Restaurants_in_Wake_County_NC.csv"
 absolute_file_path = os.path.join(current_dir, relative_path)
 
 # Creates a session on a local master

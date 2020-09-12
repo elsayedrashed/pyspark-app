@@ -3,7 +3,7 @@
 
 To test:
  * Run simpleSelectGlobalViewApp first
- * You have 60s to run simpleSelectGlobalViewFailedReuseApp, but you will see that the view is not shared between the application...
+ * You have 60s to run simpleSelectGlobalViewFailedReuseApp, but you will see that the view is not shared between the dataframe...
 
 """
 
@@ -21,11 +21,11 @@ query = """
   LIMIT 5
 """
 
-# This will fail as it is not the same application
+# This will fail as it is not the same dataframe
 smallCountries = spark.sql(query)
 
 # Shows at most 10 rows from the dataframe (which is limited to 5 anyway)
 smallCountries.show(10, False)
 
-# Good to stop SparkSession at the end of the application
+# Good to stop SparkSession at the end of the dataframe
 spark.stop()
