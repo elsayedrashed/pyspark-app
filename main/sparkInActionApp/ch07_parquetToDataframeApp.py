@@ -4,7 +4,7 @@
  Source of file: Apache Parquet project -
  https://github.com/apache/parquet-testing
 
- @author rambabu.posa
+ @author Elsayed Rashed
 """
 from pyspark.sql import SparkSession
 import os
