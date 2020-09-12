@@ -12,7 +12,7 @@ spark.sparkContext.setLogLevel("WARN")
 # Reading all the relevant data sources
 ###############################################################################
 
-DIRECTORY = "../../resources/broadcast-logs-data"
+DIRECTORY = "../../resources/broadcastLogsData"
 
 logs = spark.read.csv(
     os.path.join(DIRECTORY, "BroadcastLogs.csv"),

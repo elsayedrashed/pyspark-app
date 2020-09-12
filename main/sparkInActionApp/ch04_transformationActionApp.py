@@ -23,7 +23,7 @@ t1 = int(round(time.time() * 1000))
 
 print("1. Creating a session ........... {}".format(t1 - t0))
 
-# Step 2 - Reads a CSV file with header, stores it in a dataframe
+# Step 2 - Reads a CSV file with header, stores it in a dataFrame
 df = spark.read.csv(header=True, inferSchema=True,path=absolute_file_path)
 
 initalDf = df

@@ -2,15 +2,16 @@
    Union of two dataframes.
 
 """
-import dataframe.dataframeUtility as su
+
+from packages.dataFrame import dataFrameUtility as su
 from pyspark.sql import SparkSession
 import os
 
 current_dir = os.path.dirname(__file__)
-relative_path1 = "../resources/data/Restaurants_in_Wake_County_NC.csv"
+relative_path1 = "./resources/data/Restaurants_in_Wake_County_NC.csv"
 absolute_file_path1 = os.path.join(current_dir, relative_path1)
 
-relative_path2 = "../resources/data/Restaurants_in_Durham_County_NC.json"
+relative_path2 = "./resources/data/Restaurants_in_Durham_County_NC.json"
 absolute_file_path2 = os.path.join(current_dir, relative_path2)
 
 # Creates a session on a local master

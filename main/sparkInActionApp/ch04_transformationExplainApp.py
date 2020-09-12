@@ -15,7 +15,7 @@ absolute_file_path = os.path.join(current_dir, relative_path)
 spark = SparkSession.builder.appName("Analysing Catalyst's behavior") \
                     .master("local[*]").getOrCreate()
 
-# Step 2 - Reads a CSV file with header, stores it in a dataframe
+# Step 2 - Reads a CSV file with header, stores it in a dataFrame
 df = spark.read.csv(header=True, inferSchema=True,path=absolute_file_path)
 
 df0 = df

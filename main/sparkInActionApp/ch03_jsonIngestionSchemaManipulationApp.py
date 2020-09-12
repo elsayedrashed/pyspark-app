@@ -1,5 +1,5 @@
 """
-   CSV ingestion in a dataframe.
+   CSV ingestion in a dataFrame.
 
    @author rambabu.posa
 """
@@ -9,7 +9,7 @@ from pyspark.sql.functions import (lit,col,concat,split)
 import os
 
 current_dir = os.path.dirname(__file__)
-relative_path = "../resources/data/Restaurants_in_Durham_County_NC.json"
+relative_path = "../../resources/data/sparkInActionData/Restaurants_in_Durham_County_NC.json"
 absolute_file_path = os.path.join(current_dir, relative_path)
 
 # Creates a session on a local master
@@ -17,7 +17,7 @@ spark = SparkSession.builder.appName("Restaurants in Durham County, NC") \
     .master("local[*]").getOrCreate()
 
 # Reads a JSON file called Restaurants_in_Durham_County_NC.json, stores
-# it in a dataframe
+# it in a dataFrame
 df = spark.read.json(relative_path)
 print("*** Right after ingestion")
 df.show(5)

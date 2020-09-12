@@ -1,5 +1,5 @@
 """
-  CSV ingestion in a dataframe and manipulation.
+  CSV ingestion in a dataFrame and manipulation.
 
   @author rambabu.posa
 """
@@ -8,7 +8,7 @@ from pyspark.sql.functions import lit,col,concat
 import os
 
 current_dir = os.path.dirname(__file__)
-relative_path = "../resources/data/Restaurants_in_Wake_County_NC.csv"
+relative_path = "../../resources/data/sparkInActionData/Restaurants_in_Wake_County_NC.csv"
 absolute_file_path = os.path.join(current_dir, relative_path)
 
 # Creates a session on a local master
@@ -17,7 +17,7 @@ spark = SparkSession.builder.appName("Restaurants in Wake County, NC") \
 
 # Reads a CSV file with header, called
 # Restaurants_in_Wake_County_NC.csv,
-# stores it in a dataframe
+# stores it in a dataFrame
 df = spark.read.csv(header=True, inferSchema=True,path=absolute_file_path)
 
 print("*** Right after ingestion")
@@ -26,7 +26,7 @@ df.printSchema()
 
 print("We have {} records.".format(df.count()))
 
-# Let's transform our dataframe
+# Let's transform our dataFrame
 df =  df.withColumn("county", lit("Wake")) \
         .withColumnRenamed("HSISID", "datasetId") \
         .withColumnRenamed("NAME", "name") \
@@ -45,7 +45,7 @@ df =  df.withColumn("county", lit("Wake")) \
 df = df.withColumn("id",
         concat(col("state"), lit("_"), col("county"), lit("_"), col("datasetId")))
 
-# Shows at most 5 rows from the dataframe
+# Shows at most 5 rows from the dataFrame
 print("*** Dataframe transformed")
 df.show(5)
 

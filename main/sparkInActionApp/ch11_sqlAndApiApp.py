@@ -1,6 +1,6 @@
 """
   Simple SQL select on ingested data after preparing
-    the data with the dataframe API.
+    the data with the dataFrame API.
   @author rambabu.posa
 """
 from pyspark.sql import SparkSession
@@ -10,7 +10,7 @@ from pyspark.sql.types import (StructType,StructField,
 import os
 
 current_dir = os.path.dirname(__file__)
-relative_path = "../resources/data/populationbycountry19802010millions.csv"
+relative_path = "../../resources/data/sparkInActionData/populationbycountry19802010millions.csv"
 absolute_file_path = os.path.join(current_dir, relative_path)
 
 # Creates a session on a local master
@@ -54,7 +54,7 @@ schema = StructType([
 ])
 
 # Reads a CSV file with header (as specified in the schema), called
-# populationbycountry19802010millions.csv, stores it in a dataframe
+# populationbycountry19802010millions.csv, stores it in a dataFrame
 df = spark.read.format("csv") \
         .option("header", True) \
         .schema(schema) \
@@ -78,7 +78,7 @@ query1 = """
 
 negativeEvolutionDf = spark.sql(query1)
 
-# Shows at most 15 rows from the dataframe
+# Shows at most 15 rows from the dataFrame
 negativeEvolutionDf.show(15, False)
 
 query2 = """
@@ -91,5 +91,5 @@ query2 = """
 moreThanAMillionDf = spark.sql(query2)
 moreThanAMillionDf.show(15, False)
 
-# Good to stop SparkSession at the end of the dataframe
+# Good to stop SparkSession at the end of the dataFrame
 spark.stop()

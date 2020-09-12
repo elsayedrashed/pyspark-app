@@ -8,7 +8,7 @@ spark = SparkSession.builder.getOrCreate()
 DATA_DIRECTORY = "../../resources/"
 
 backblaze_2019 = spark.read.csv(
-    DATA_DIRECTORY + "drive_stats", header=True, inferSchema=True
+    DATA_DIRECTORY + "driveStats", header=True, inferSchema=True
 )
 
 # Setting the layout for each column according to the schema
@@ -155,13 +155,13 @@ spark.sql(
         SELECT
             model,
             count(*) AS drive_days
-        FROM drive_stats
+        FROM driveStats
         GROUP BY model) drive_days
     INNER JOIN (
         SELECT
             model,
             count(*) AS failures
-        FROM drive_stats
+        FROM driveStats
         WHERE failure = 1
         GROUP BY model) failures
     ON
@@ -178,13 +178,13 @@ spark.sql(
         SELECT
             model,
             count(*) AS drive_days
-        FROM drive_stats
+        FROM driveStats
         GROUP BY model),
     failures as (
         SELECT
             model,
             count(*) AS failures
-        FROM drive_stats
+        FROM driveStats
         WHERE failure = 1
         GROUP BY model)
     SELECT

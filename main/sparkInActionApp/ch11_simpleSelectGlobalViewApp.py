@@ -8,7 +8,7 @@ from pyspark.sql.types import (StructType,StructField,
 import os
 
 current_dir = os.path.dirname(__file__)
-relative_path = "../resources/data/populationbycountry19802010millions.csv"
+relative_path = "../../resources/data/sparkInActionData/populationbycountry19802010millions.csv"
 absolute_file_path = os.path.join(current_dir, relative_path)
 
 # Creates a session on a local master
@@ -22,7 +22,7 @@ schema = StructType([
 ])
 
 # Reads a CSV file with header, called books.csv, stores it in a
-# dataframe
+# dataFrame
 df = spark.read.format("csv") \
           .option("header", True) \
           .schema(schema) \
@@ -39,7 +39,7 @@ query1 = """
 """
 smallCountriesDf = spark.sql(query1)
 
-# Shows at most 10 rows from the dataframe (which is limited to 5 anyway)
+# Shows at most 10 rows from the dataFrame (which is limited to 5 anyway)
 smallCountriesDf.show(10, False)
 
 query2 = """
@@ -55,6 +55,6 @@ slightlyBiggerCountriesDf = spark2.sql(query2)
 
 slightlyBiggerCountriesDf.show(10, False)
 
-# Good to stop SparkSession at the end of the dataframe
+# Good to stop SparkSession at the end of the dataFrame
 spark.stop()
 spark2.stop()

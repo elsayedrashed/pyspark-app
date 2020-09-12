@@ -10,7 +10,7 @@ import os
 import json
 
 current_dir = os.path.dirname(__file__)
-relative_path = "../resources/data/Restaurants_in_Wake_County_NC.csv"
+relative_path = "../../resources/data/sparkInActionData/Restaurants_in_Wake_County_NC.csv"
 absolute_file_path = os.path.join(current_dir, relative_path)
 
 # Creates a session on a local master
@@ -19,10 +19,10 @@ spark = SparkSession.builder.appName("Schema introspection for restaurants in Wa
 
 # Reads a CSV file with header, called
 # Restaurants_in_Wake_County_NC.csv,
-# stores it in a dataframe
+# stores it in a dataFrame
 df = spark.read.csv(header=True, inferSchema=True,path=absolute_file_path)
 
-# Let's transform our dataframe
+# Let's transform our dataFrame
 df =  df.withColumn("county", F.lit("Wake")) \
         .withColumnRenamed("HSISID", "datasetId") \
         .withColumnRenamed("NAME", "name") \
@@ -53,5 +53,5 @@ parsedSchemaAsJson = json.loads(schemaAsJson)
 
 print("*** Schema as JSON: {}".format(json.dumps(parsedSchemaAsJson, indent=2)))
 
-# Good to stop SparkSession at the end of the dataframe
+# Good to stop SparkSession at the end of the dataFrame
 spark.stop()

@@ -9,7 +9,7 @@ from pyspark.sql import functions as F
 import os
 
 current_dir = os.path.dirname(__file__)
-relative_path = "../resources/data/authors.csv"
+relative_path = "../../resources/data/sparkInActionData/authors.csv"
 absolute_file_path = os.path.join(current_dir, relative_path)
 
 # Creates a session on a local master
@@ -18,7 +18,7 @@ spark = SparkSession.builder.appName("CSV to DB").master("local").getOrCreate()
 #  Step 1: Ingestion
 #  ---------
 #
-#  Reads a CSV file with header, called authors.csv, stores it in a dataframe
+#  Reads a CSV file with header, called authors.csv, stores it in a dataFrame
 df = spark.read.csv(header=True, inferSchema=True, path=absolute_file_path)
 
 # Step 2: Transform
@@ -40,5 +40,5 @@ prop = {"driver":"org.postgresql.Driver", "user":"jgp", "password":"Spark<3Java"
 # Write in a table called ch02
 df.write.jdbc(mode='overwrite', url=dbConnectionUrl, table="ch02", properties=prop)
 
-# Good to stop SparkSession at the end of the dataframe
+# Good to stop SparkSession at the end of the dataFrame
 spark.stop()
